@@ -1,9 +1,10 @@
 import { Navbar, Nav, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 // import obj from '../data.json'
 // ../
 
-const MyNavbar = () => {
+const MyNavbar = ({ searchQuery, setSearchQuery }) => {
   //   const location = useLocation();
 
   //   return location.pathname === "/stefano" ? (
@@ -11,15 +12,28 @@ const MyNavbar = () => {
   //   ) : (
   return (
     <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+      <Link to="/">
+        <Navbar.Brand>Recap!</Navbar.Brand>
+      </Link>
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="#pricing">Pricing</Nav.Link>
+        <Link to="/">
+          <div className="nav-link">Home</div>
+        </Link>
+        <Link to="/new">
+          <div className="nav-link">New appointment</div>
+        </Link>
+        <Link to="/pricing">
+          <div className="nav-link">Pricing</div>
+        </Link>
       </Nav>
       <Form inline>
-        <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-info">Search</Button>
+        <Form.Control
+          type="text"
+          placeholder="Search"
+          className="mr-sm-2"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </Form>
     </Navbar>
   );
